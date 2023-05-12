@@ -1,6 +1,6 @@
 # Blockchain
 
-Création d'une Blockchain en node.js et typescript en utilisant le module sjcl pour le hashage.
+Création d'une Blockchain en node.js et typescript en utilisant le module crypto-js pour le hashage.
 
 ## Installation
 
