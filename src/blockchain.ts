@@ -6,12 +6,13 @@ class Blockchain {
 
     constructor() {
         this.chain = [this.createGenesisBlock()];
-        this.difficulty = 4;
+        this.difficulty = 2;
     }
 
     createGenesisBlock(): Block {
-        return new Block(0, "Genesis Block", "0");
+        return new Block(0, { id: 0, receiver: "Genesis", sender: "Block", amount: 0 }, "0");
     }
+
 
     getLatestBlock(): Block {
         return this.chain[this.chain.length - 1];

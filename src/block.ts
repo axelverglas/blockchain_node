@@ -1,9 +1,10 @@
 import * as CryptoJS from "crypto-js";
+import { Data } from "./models/data";
 
 class Block {
     public index: number;
     public timestamp: number;
-    public data: any;
+    public data: Data;
     public previousHash: string;
     public hash: string;
     public nonce: number;
@@ -28,13 +29,12 @@ class Block {
     }
 
     mineBlock(difficulty: number): void {
-        while (
-            this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")
-        ) {
+        let target = Array(2*difficulty + 1).join("0");
+        while (this.hash.substring(0, 2*difficulty) !== target) {
             this.nonce++;
             this.hash = this.calculateHash();
         }
-    }
+    }    
 }
 
 export default Block;

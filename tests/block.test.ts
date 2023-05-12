@@ -1,15 +1,14 @@
-// tests/Block.test.ts
-
-import Block from '../src/Block';
+import Block from '../src/block';
+import { Data } from '../src/models/data';
 
 describe('Block', () => {
     let previousBlock: Block;
     let newBlock: Block;
-    let data: any;
+    let data: Data;
 
     beforeEach(() => {
-        previousBlock = new Block(0, 'Genesis Block');
-        data = { amount: 50 };
+        previousBlock = new Block(0, { id: 0, receiver: "Genesis", sender: "Block", amount: 0 }, "0");
+        data = { id: 1, receiver: "Alice", sender: "Bob", amount: 50 };
         newBlock = new Block(1, data, previousBlock.hash);
     });
 
@@ -33,6 +32,6 @@ describe('Block', () => {
     test('mines a block with the correct difficulty', () => {
         const difficulty = 2;
         newBlock.mineBlock(difficulty);
-        expect(newBlock.hash.substring(0, difficulty)).toEqual('00');
-    });
+        expect(newBlock.hash.substring(0, 2*difficulty)).toEqual('0'.repeat(2*difficulty));
+    });    
 });
